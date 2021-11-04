@@ -1,14 +1,14 @@
 class Models:
     def generate(db):
-        class Person(db.Model):
-            __tablename__ = 'person'
+        class Peoples(db.Model):
+            __tablename__ = 'peoples'
             id = db.Column(db.BigInteger, primary_key=True)
             name = db.Column(db.String())
             sale_opportunity = db.Column(db.Boolean, default=1)
 
-            person_cars_relationship = db.relationship(
+            peoples_cars_relationship = db.relationship(
                 "Cars",
-                primaryjoin="Person.id == Cars.id_people"
+                primaryjoin="Peoples.id == Cars.id_people"
             )
 
         class Cars(db.Model):
@@ -16,8 +16,14 @@ class Models:
             id = db.Column(db.BigInteger, primary_key=True)
             model = db.Column(db.String())
             color = db.Column(db.String())
-            id_people = db.Column(db.Integer(), db.ForeignKey("person.id"))
+            id_people = db.Column(db.Integer(), db.ForeignKey("peoples.id"))
+
+        class User(db.Model):
+            __tablename__ = 'users'
+            id = db.Column(db.BigInteger, primary_key=True)
+            name = db.Column(db.String())
+            password = db.Column(db.String())
 
         db.create_all()
 
-        return (Person, Cars)
+        return (Peoples, Cars, User)

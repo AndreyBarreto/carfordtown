@@ -16,7 +16,7 @@ class PeopleDomain:
 
     def cars_by_people(db, id, PeopleModel):
         cars = PeopleModel.query.filter(
-            PeopleModel.id == id).first().person_cars_relationship
+            PeopleModel.id == id).first().peoples_cars_relationship
         if len(cars) >= 3:
             return True
         return False

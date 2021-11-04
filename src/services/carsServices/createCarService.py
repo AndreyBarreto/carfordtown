@@ -41,7 +41,7 @@ class createCarService:
         carCreated = CarDomain.create(
             data, id_people, db, PeopleModel, CarsModel)
         if carCreated:
-            people = PeopleDomain.update_sale_opportunity(
+            PeopleDomain.update_sale_opportunity(
                 db, id_people, PeopleModel)
             return data
         return {"error": "Car needs a valid id people"}, 400
