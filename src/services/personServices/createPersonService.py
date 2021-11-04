@@ -1,4 +1,4 @@
-from domain.peopleDomain import PeopleDomain
+from domains.peopleDomain import PeopleDomain
 from jsonschema import validate
 
 

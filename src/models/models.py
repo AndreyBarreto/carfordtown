@@ -21,7 +21,7 @@ class Models:
         class User(db.Model):
             __tablename__ = 'users'
             id = db.Column(db.BigInteger, primary_key=True)
-            name = db.Column(db.String())
+            username = db.Column(db.String())
             password = db.Column(db.String())
 
         db.create_all()
