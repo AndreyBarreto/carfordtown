@@ -3,9 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
 import os
 from models.models import Models
-from functools import wraps
-import jwt
-
+from middlewares.authMiddleware import token_required
 
 #####Services######
 from services.personServices.createPersonService import createPersonService
@@ -27,29 +25,8 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = f"postgresql+psycopg2://{os.environ['POSTGRES_USER']}:{os.environ['POSTGRES_PASSWORD']}@{os.environ['POSTGRES_HOST']}/{os.environ['POSTGRES_NAME']}"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
-
+print('criando')
 (PeoplesModel, CarsModel, UsersModel) = Models.generate(db)
-
-
-def token_required(f):
-    @wraps(f)
-    def decorated(*args, **kwargs):
-        token = None
-        if 'HTTP_X_ACESS_TOKEN' in request.headers.environ:
-            token = request.headers.environ['HTTP_X_ACESS_TOKEN']
-        if not token:
-            return {'error': 'Token is missing'}, 401
-
-        try:
-            jwt.decode(
-                token, os.environ['SECRET_KEY'], algorithms=["HS256"])
-        except:
-            return {
-                'error': 'Token is invalid'
-            }, 401
-        return f(*args, **kwargs)
-
-    return decorated
 
 
 @app.route("/")
@@ -80,7 +57,7 @@ def create_car(id_people):
 
 
 @app.route("/register", methods=["POST"])
-@token_required
+# @token_required
 def register_user():
     data = request.json
     isNotValidJson = CreateUser.validate(data, db, UsersModel)

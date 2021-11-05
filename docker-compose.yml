@@ -24,8 +24,9 @@ services:
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_HOST: postgres
+      POSTGRES_HOST: ${POSTGRES_HOST}
       POSTGRES_NAME: ${POSTGRES_NAME}
+      SECRET_KEY: ${SECRET_KEY}
     ports:
         - 3333:3333
     command: python3 main.py
