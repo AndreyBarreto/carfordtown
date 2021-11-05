@@ -1,7 +1,7 @@
 
 
 class CarDomain:
-    def create(data, id_person, db, PeopleModel, CarsModel):
+    def create(data, db, CarsModel):
         try:
             objectDB = CarsModel(**data)
             db.session.add(objectDB)

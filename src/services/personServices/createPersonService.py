@@ -3,7 +3,11 @@ from jsonschema import validate
 
 
 class createPersonService:
-    def validate(self, data):
+    def validate(self, data, db, PeoplesModel):
+        self.data = data
+        self.db = db
+        self.PeoplesModel = PeoplesModel
+
         schema = {
             "type": "object",
             "required": ["name"],
@@ -20,5 +24,5 @@ class createPersonService:
         except Exception as e:
             return {"error": e.message}, 400
 
-    def create(self, data, db, PeopleModel):
-        return PeopleDomain.create(data, db, PeopleModel)
+    def create(self):
+        return PeopleDomain.create(self.data, self.db, self.PeoplesModel)
