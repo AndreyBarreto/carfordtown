@@ -1,4 +1,4 @@
-## Desafio
+## Challenge
 
 Nork-Town is a weird place. Crows cawk the misty morning while old men squint. It’s a small
 town, so the mayor had a bright idea to limit the number of cars a person may possess. One
@@ -20,7 +20,7 @@ Requirements
 
 Time to deliver, 72 hours.
 
-### Como RODAR
+### Getting Started
 
 - Create an .env in the main project scope can be exactly the same as .env.example
 
